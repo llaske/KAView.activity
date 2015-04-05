@@ -1,0 +1,22 @@
+#main-toolbar #activity-button {
+  background-image: url(../activity/activity-icon.svg);
+}
+
+.main-content {
+	background-color: #cecfce;
+}
+
+.viewer-footer {
+	position: absolute;
+	bottom: 0px;
+	height: 55px;
+	width: 100%;
+}
+
+.previous-button {
+	background-image: url(../icons/go-left.svg);
+}
+
+.next-button {
+	background-image: url(../icons/go-right.svg);
+}
