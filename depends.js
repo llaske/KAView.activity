@@ -1,3 +1,6 @@
 ﻿enyo.depends(
-	"app.js"
+	"constant.js",
+	"app.js",
+	"item.js",
+	"database.js"
 );
