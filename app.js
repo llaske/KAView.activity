@@ -12,6 +12,7 @@ enyo.kind({
 		]},
 		{name: "footer", classes: "viewer-footer toolbar", fit: false, components: [
 			{name: "previousbutton", kind: "Button", classes: "toolbutton previous-button pull-left", title:"Previous", ontap: "showPrevious", showing: false},
+			{name: "pagecount", content: "99/99", classes: "page-count"},
 			{name: "nextbutton", kind: "Button", classes: "toolbutton next-button pull-right", title:"Next", ontap: "showNext", showing: false}
 		]}
 	],
@@ -19,7 +20,7 @@ enyo.kind({
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
-		this.collection = database_fr;
+		this.collection = database_es;
 		this.index = 0;
 		this.computeSize();
 		this.draw();
@@ -62,6 +63,7 @@ enyo.kind({
 		
 		// Display button
 		this.$.previousbutton.setShowing(this.index-constant.pageCount >= 0);
+		this.$.pagecount.setContent(1+Math.ceil(this.index/constant.pageCount)+"/"+Math.ceil(len/constant.pageCount));
 		this.$.nextbutton.setShowing(this.index+constant.pageCount <= len);
 	},
 	

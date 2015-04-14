@@ -14,10 +14,23 @@
 
 .previous-button {
 	background-image: url(../icons/go-left.svg);
+	z-index: 2;
+}
+
+.page-count {
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	text-align: center;
+	font-size: 18pt;
+	height: 40px;
+	z-index: 1;
 }
 
 .next-button {
 	background-image: url(../icons/go-right.svg);
+	z-index: 2;
 }
 
 
@@ -33,6 +46,19 @@
     -ms-user-select: none;
 	user-select: none;
 	position: relative;
+}
+
+.spinner {
+	position: absolute;
+	margin-left: 45%;
+	margin-top: 20%;
+}
+
+.itemBackground {
+	position: absolute;
+	width: 100%;
+	background-color: #9c9a9c;
+	height: 100px;
 }
 
 .itemImage {
