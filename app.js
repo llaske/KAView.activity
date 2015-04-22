@@ -55,7 +55,8 @@ enyo.kind({
 					code: collection[this.index+i].id,
 					title: collection[this.index+i].title,
 					isLocal: collection[this.index+i].local,
-					isFavorite: false
+					isFavorite: false,
+					onVideoPlayed: "showVideo"
 				},
 				{ owner: this }
 			).render();
@@ -76,5 +77,10 @@ enyo.kind({
 	showNext: function() {
 		this.index += constant.pageCount;
 		this.draw();	
+	},
+	
+	showVideo: function(item) {
+		this.videoDialog = this.createComponent({kind: "KAView.VideoDialog", item: item}, {owner:this});
+		this.videoDialog.show();		
 	}
 });

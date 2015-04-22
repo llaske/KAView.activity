@@ -8,12 +8,15 @@ enyo.kind({
 		isLocal: false,
 		isFavorite: false
 	},
+	events: {
+		onVideoPlayed: ""
+	},
 	classes: "item",
 	components: [
 		{ name: "spinner", kind: "Image", src: "images/spinner-dark.gif", classes: "spinner" },
 		{ name: "background", classes: "itemImage", kind: "Image", src: "images/notloaded.png" },
 		{ name: "itemImage", classes: "itemImage", kind: "Image", showing: false, onload: "imageLoaded", onerror: "defaultImage" },
-		{ name: "itemPlay", classes: "itemPlay", kind: "Image", showing: false, src: "images/play.svg" },
+		{ name: "itemPlay", classes: "itemPlay", kind: "Image", showing: false, src: "images/play.svg", ontap: "showVideo" },
 		{ name: "itemFavorite", classes: "itemFavorite", kind: "Image", src: "images/favorite.svg", showing: false },
 		{ name: "itemRemote", classes: "itemRemote", kind: "Image", src: "images/remote.svg", showing: false },
 		{ name: "itemOverlay", classes: "itemOverlay" },
@@ -34,7 +37,7 @@ enyo.kind({
 		if (this.isLocal)
 			this.$.itemImage.setAttribute("src", "images/database/"+this.code+".png");
 		else
-			this.$.itemImage.setAttribute("src", "http://s3.amazonaws.com/KA-youtube-converted/"+this.code+".mp4/"+this.code+".png");
+			this.$.itemImage.setAttribute("src", constant.khanServer+this.code+".mp4/"+this.code+".png");
 	},
 	
 	titleChanged: function() {
@@ -62,5 +65,18 @@ enyo.kind({
 		this.$.itemPlay.setShowing(true);
 		this.$.spinner.setShowing(false);
 		this.$.background.setShowing(false);
+	},
+	
+	videoURL: function() {
+		if (this.isLocal)
+			return "videos/database/"+this.code+".mp4";
+		else
+			return constant.khanServer+this.code+".mp4/"+this.code+".mp4";
+	
+	},
+	
+	// Handle event
+	showVideo: function() {
+		this.doVideoPlayed();
 	}
 });
