@@ -11,7 +11,8 @@ enyo.kind({
 	},
 	components: [
 		{name: "header", classes: "video-header toolbar", components: [
-			{name: "title", classes: "video-title pull-left", content: ""},
+			{name: "favoritebutton", kind: "Button", classes: "toolbutton video-favorite-button pull-left", title: "Favorite", ontap: "setFavorite"},
+			{name: "title", classes: "video-title", content: ""},
 			{name: "closebutton", kind: "Button", classes: "toolbutton video-close-button pull-right", title: "Close", ontap: "closeDialog"}
 		]},
 		{name: "video", classes: "video-item", kind: "enyo.Video", fitToWindow: false, autoplay: true, showControls: true},
@@ -25,11 +26,19 @@ enyo.kind({
 	},
 	
 	rendered: function() {
+		this.$.favoritebutton.applyStyle("background-image", "url(images/"+(!this.item.isFavorite?"not":"")+"favorite.svg)");	
+		// TODO: Use this.$.video.setCurrentTime(xx) to restart video at start view point
 	},
 	
 	// Process events
 	closeDialog: function() {
 		this.$.video.pause();
+		// TODO: Use this.$.video.getCurrentTime() to get current view point
 		this.hide();
+	},
+	
+	setFavorite: function() {
+		this.item.isFavorite = !this.item.isFavorite;
+		this.rendered();
 	}
 });	

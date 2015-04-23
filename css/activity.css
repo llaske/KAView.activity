@@ -128,6 +128,10 @@
 	background-image: url(../icons/dialog-cancel.svg);
 }
 
+.video-favorite-button {
+	display: inline-block;
+}
+
 .video-item {
 	margin-left: 1%;
 	margin-top: 1%;
@@ -137,11 +141,11 @@
 }
 
 .video-title {
-	position: absolute;
+	display: inline-block;
+	margin-left: 20px;
+	margin-bottom: 10px;
 	font-size: 16pt;
-	vertical-align: center;	
 	color: white;
-	margin-top: 2%;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;	
