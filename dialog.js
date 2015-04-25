@@ -21,18 +21,27 @@ enyo.kind({
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
-		this.init = false;
-		this.$.title.setContent(this.item.title);
-		this.$.video.setSrc(this.item.videoURL());
+		this.itemChanged();
 	},
 	
 	rendered: function() {
-		this.$.favoritebutton.applyStyle("background-image", "url(images/"+(!this.item.isFavorite?"not":"")+"favorite.svg)");	
-		if (!this.init) {
-			this.init = true;
-			var time = Util.getReadTime(this.item.code);
-			if (time)
-				this.$.video.setCurrentTime(time);
+		if (this.item != null) {
+			this.$.favoritebutton.applyStyle("background-image", "url(images/"+(!this.item.isFavorite?"not":"")+"favorite.svg)");	
+			if (!this.init) {
+				this.init = true;
+				var time = Util.getReadTime(this.item.code);
+				if (time)
+					this.$.video.setCurrentTime(time);
+			}
+		}
+	},
+	
+	itemChanged: function() {
+		this.init = false;
+		if (this.item != null) {
+			this.$.title.setContent(this.item.title);
+			this.$.video.setSrc(this.item.videoURL());
+			this.render();
 		}
 	},
 	

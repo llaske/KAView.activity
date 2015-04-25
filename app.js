@@ -14,7 +14,8 @@ enyo.kind({
 			{name: "previousbutton", kind: "Button", classes: "toolbutton previous-button pull-left", title:"Previous", ontap: "showPrevious", showing: false},
 			{name: "pagecount", content: "99/99", classes: "page-count"},
 			{name: "nextbutton", kind: "Button", classes: "toolbutton next-button pull-right", title:"Next", ontap: "showNext", showing: false}
-		]}
+		]},
+		{name: "videoDialog", kind: "KAView.VideoDialog"}
 	],
 	
 	// Constructor
@@ -80,7 +81,7 @@ enyo.kind({
 	},
 	
 	showVideo: function(item) {
-		this.videoDialog = this.createComponent({kind: "KAView.VideoDialog", item: item}, {owner:this});
-		this.videoDialog.show();		
+		this.$.videoDialog.setItem(item);
+		this.$.videoDialog.show();
 	}
 });
