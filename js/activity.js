@@ -8,7 +8,12 @@ define(function (require) {
 		
 		// Launch main screen
 		app = new KAView.App({activity: activity});
-        app.renderInto(document.getElementById("viewer"));
+		app.renderInto(document.getElementById("viewer"));
+		
+		// Load context
+		Util.loadContext(function() {
+			app.draw();
+		});
     });
 
 });

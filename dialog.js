@@ -21,24 +21,32 @@ enyo.kind({
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
+		this.init = false;
 		this.$.title.setContent(this.item.title);
 		this.$.video.setSrc(this.item.videoURL());
 	},
 	
 	rendered: function() {
 		this.$.favoritebutton.applyStyle("background-image", "url(images/"+(!this.item.isFavorite?"not":"")+"favorite.svg)");	
-		// TODO: Use this.$.video.setCurrentTime(xx) to restart video at start view point
+		if (!this.init) {
+			this.init = true;
+			var time = Util.getReadTime(this.item.code);
+			if (time)
+				this.$.video.setCurrentTime(time);
+		}
 	},
 	
 	// Process events
 	closeDialog: function() {
 		this.$.video.pause();
-		// TODO: Use this.$.video.getCurrentTime() to get current view point
+		Util.setReadTime(this.item.code, this.$.video.getCurrentTime());
+		Util.saveContext();
 		this.hide();
 	},
 	
 	setFavorite: function() {
-		this.item.isFavorite = !this.item.isFavorite;
+		this.item.setIsFavorite(!this.item.isFavorite);
+		Util.setFavorite(this.item.code, this.item.isFavorite);
 		this.rendered();
 	}
 });	

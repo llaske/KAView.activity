@@ -55,7 +55,7 @@ enyo.kind({
 					code: collection[this.index+i].id,
 					title: collection[this.index+i].title,
 					isLocal: collection[this.index+i].local,
-					isFavorite: false,
+					isFavorite: Util.getFavorite(collection[this.index+i].id),
 					onVideoPlayed: "showVideo"
 				},
 				{ owner: this }

@@ -3,5 +3,6 @@
 	"app.js",
 	"item.js",
 	"dialog.js",
-	"database.js"
+	"database.js",
+	"util.js"
 );
