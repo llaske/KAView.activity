@@ -15,7 +15,7 @@ enyo.kind({
 			{name: "title", classes: "video-title", content: ""},
 			{name: "closebutton", kind: "Button", classes: "toolbutton video-close-button pull-right", title: "Close", ontap: "closeDialog"}
 		]},
-		{name: "video", classes: "video-item", kind: "enyo.Video", fitToWindow: false, autoplay: true, showControls: true},
+		{name: "video", classes: "video-item", kind: "enyo.Video", fitToWindow: false, autoplay: true, showControls: true, poster: "images/notloaded.png"},
 	],
 
 	// Constructor
