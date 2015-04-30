@@ -8,7 +8,7 @@ Util = {};
 // Activity context handling
 var app;
 Util.context = {
-	language: "",
+	language: "en",
 	favorites: {},
 	readtimes: {}
 };
@@ -32,6 +32,21 @@ console.log("LOAD CONTEXT <"+data+">");
 };
 
 // Context update
+Util.setLanguage = function(lang) {
+	Util.context.language = lang;
+	app.localeChanged();
+}
+Util.getLanguage = function() {
+	return Util.context.language;
+}
+Util.getCollection = function() {
+	if (Util.context.language == "en")
+		return database_en;
+	else if (Util.context.language == "es")
+		return database_es;
+	else
+		return database_fr;
+}
 Util.setFavorite = function(id, value) {
 	if (value)
 		Util.context.favorites[id] = value;

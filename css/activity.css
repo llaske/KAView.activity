@@ -2,6 +2,44 @@
   background-image: url(../activity/activity-icon.svg);
 }
 
+#main-toolbar #settings-button {
+  background-image: url(../icons/settings.svg);
+}
+
+.palette-button {
+	width: 110px;
+	height: 47px;
+	margin: 4px 22px;
+	color: transparent;
+	background-color: transparent;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 59px;
+	border: 0;
+	border-radius: 5.5px;
+	display: block;
+}
+
+.palette-button-notselected {
+	background-color: transparent;
+}
+
+.palette-button-selected {
+	background-color: #9c9a9c;
+}
+
+#en-button {
+	background-image:url(../icons/en.svg);
+}
+
+#es-button {
+	background-image:url(../icons/es.svg);
+}
+
+#fr-button {
+	background-image:url(../icons/fr.svg);
+}
+
 .main-content {
 	background-color: #cecfce;
 }
@@ -63,6 +101,8 @@
 
 .itemImage {
 	width: 100%;
+	max-width: 480px;
+	max-height: 270px;
 	text-align: center;
 }
 

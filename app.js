@@ -21,10 +21,8 @@ enyo.kind({
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
-		this.collection = database_es;
-		this.index = 0;
 		this.computeSize();
-		this.draw();
+		this.localeChanged();
 	},
 	
 	computeSize: function() {
@@ -83,5 +81,11 @@ enyo.kind({
 	showVideo: function(item) {
 		this.$.videoDialog.setItem(item);
 		this.$.videoDialog.show();
+	},
+	
+	localeChanged: function() {
+		this.collection = Util.getCollection();
+		this.index = 0;
+		this.draw();	
 	}
 });
