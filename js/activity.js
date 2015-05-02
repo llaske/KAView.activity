@@ -15,6 +15,10 @@ define(function (require) {
 			Util.saveContext();
 			settingspalette.popDown();
 		});
+		settingspalette.addEventListener('remote', function() {
+			settingspalette.popDown();
+			app.remotePopUp();
+		});
 		
 		// Launch main screen
 		app = new KAView.App({activity: activity});

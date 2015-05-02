@@ -15,7 +15,8 @@ enyo.kind({
 			{name: "pagecount", content: "99/99", classes: "page-count"},
 			{name: "nextbutton", kind: "Button", classes: "toolbutton next-button pull-right", title:"Next", ontap: "showNext", showing: false}
 		]},
-		{name: "videoDialog", kind: "KAView.VideoDialog"}
+		{name: "videoDialog", kind: "KAView.VideoDialog"},
+		{name: "remoteDialog", kind: "KAView.RemoteDialog"}
 	],
 	
 	// Constructor
@@ -87,5 +88,14 @@ enyo.kind({
 		this.collection = Util.getCollection();
 		this.index = 0;
 		this.draw();	
+	},
+	
+	remotePopUp: function() {
+		this.$.remoteDialog.init();
+		this.$.remoteDialog.show();
+	},
+	
+	remoteChanged: function() {
+		this.draw();
 	}
 });

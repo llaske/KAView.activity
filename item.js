@@ -36,8 +36,10 @@ enyo.kind({
 	nameChanged: function() {
 		if (this.isLocal)
 			this.$.itemImage.setAttribute("src", "images/database/"+this.code+".png");
-		else
+		else if (Util.isKhanServer())
 			this.$.itemImage.setAttribute("src", constant.khanServer+this.code+".mp4/"+this.code+".png");
+		else
+			this.$.itemImage.setAttribute("src", Util.getServer()+"/images/"+this.code+".png");
 	},
 	
 	titleChanged: function() {
@@ -70,8 +72,10 @@ enyo.kind({
 	videoURL: function() {
 		if (this.isLocal)
 			return "videos/database/"+this.code+".mp4";
-		else
+		else if (Util.isKhanServer())
 			return constant.khanServer+this.code+".mp4/"+this.code+".mp4";
+		else
+			return Util.getServer()+"/videos/"+this.code+".mp4";
 	
 	},
 	

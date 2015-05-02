@@ -40,6 +40,10 @@
 	background-image:url(../icons/fr.svg);
 }
 
+#remote-button {
+	background-image:url(../images/remote.svg);
+}
+
 .main-content {
 	background-color: #cecfce;
 }
@@ -191,6 +195,92 @@
 	overflow: hidden;	
 }
 
+.module-icon {
+	position: absolute;
+	left: 10px;
+	background-image: url(../images/remote.svg);
+	width: 49px;
+	height: 49px;
+}
+
+.module-dialog {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 95%;
+	max-width: 400px;
+	height: 95%;
+	max-height: 220px;
+	background-color: #ffffff;
+	border: 2px solid #808080;	
+}
+
+.module-text {
+	position: absolute;
+	font-size: 16pt;
+	left: 80px;
+	top: 20px;
+	color: white;
+	word-wrap: break-word;	
+}
+
+.module-cancel-button {
+	background-image: url(../icons/dialog-cancel.svg);
+	position: absolute !important;
+	top: 5px;
+	right: 60px;
+	width: 35px !important;
+	height: 35px !important;
+}
+
+.module-ok-button {
+	background-image: url(../icons/dialog-ok.svg);
+	position: absolute !important;
+	top: 5px;
+	right: 15px;
+	width: 35px !important;
+	height: 35px !important;
+}
+
+.khan-checkbox {
+	margin-left: 20px !important;
+	margin-top: 30px !important;
+}
+
+.local-checkbox {
+	margin-left: 20px !important;
+	margin-top: 30px !important;
+}
+
+.server-message {
+	margin-left: 10px;
+	margin-top: 20px;
+	vertical-align: bottom;
+	font-size: 12pt;
+	color: black;
+	height: 24px;
+	display: inline-block;
+}
+
+.server-httplabel {
+	margin-left: 15px;
+	margin-top: 26px;
+	color: black;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.server-servername {
+	display: inline-block;
+	width: 165px;
+	margin-top: 26px;
+	vertical-align: middle;
+}
+
+.server-notice {
+	width: 165px;
+	margin-left: 195px;
+}
 
 @media screen and (max-width: 480px) {
 	.itemTitle {

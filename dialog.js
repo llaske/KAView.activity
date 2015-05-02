@@ -58,4 +58,91 @@ enyo.kind({
 		Util.setFavorite(this.item.code, this.item.isFavorite);
 		this.rendered();
 	}
-});	
+});
+
+
+// Computer dialog
+enyo.kind({
+	name: "KAView.RemoteDialog",
+	kind: "enyo.Popup",
+	classes: "module-dialog",
+	centered: true,
+	modal: true,
+	floating: true,
+	autoDismiss: false,
+	components: [
+		{name: "toolbar", classes: "toolbar", components: [
+			{name: "icon", classes: "module-icon"},
+			{name: "text", content: "Server settings", classes: "module-text"},
+			{name: "cancelbutton", kind: "Button", classes: "toolbutton module-cancel-button", ontap: "cancel"},		
+			{name: "okbutton", kind: "Button", classes: "toolbutton module-ok-button", ontap: "ok"}
+		]},
+		{name: "content", classes: "server-content", components: [
+			{components:[
+				{name: "khan", kind: "Checkbox", classes: "toggle khan-checkbox", onActivate: "switchConnection"},
+				{content: "Khan Academy server", classes: "server-message"}
+			]},
+			{components:[			
+				{name: "local", kind: "Checkbox", classes: "toggle local-checkbox", onActivate: "switchConnection"},
+				{content: "Local server", classes: "server-message"},
+				{content: "http://", classes: "server-httplabel"},
+				{name: "servername", kind: "Input", classes: "server-servername"},
+				{content: "in .../videos and .../images", classes: "server-notice"}
+			]},		
+		]}
+	],
+	
+	// Constructor
+	create: function() {
+		this.inherited(arguments);
+		this.init();
+	},
+	
+	init: function() {
+		if (Util.isKhanServer()) {
+			this.$.khan.setChecked(true);
+			this.$.local.setChecked(false);
+			this.$.servername.setValue("");
+		} else {
+			this.$.khan.setChecked(false);
+			this.$.local.setChecked(true);
+			var servername = Util.getServer();
+			if (servername.indexOf("http://") == 0)
+				servername = servername.substr(7);
+			this.$.servername.setValue(servername);
+		}
+	},
+	
+	rendered: function() {
+	},
+	
+	// Event handling
+	cancel: function() {
+		this.hide();
+	},
+	
+	ok: function() {
+		this.hide();
+		if (this.$.khan.getChecked()) {
+			Util.setServer(constant.khanServer);
+		} else {
+			var servername = this.$.servername.getValue();
+			if (servername.length == 0)
+				return;
+			if (servername[servername.length-1] == '/')
+				servername = servername.substr(0, servername.length-1);
+			Util.setServer("http://" + servername);
+		}
+		app.remoteChanged();
+	},
+	
+	switchConnection: function(s) {
+		if (s.name == "khan" && this.$.khan.getChecked()) {
+			this.$.local.setChecked(false);
+			this.$.servername.setDisabled(true);
+		} else if (s.name == "local" && this.$.local.getChecked()) {
+			this.$.khan.setChecked(false);
+			this.$.servername.setDisabled(false);
+		}
+	}
+});

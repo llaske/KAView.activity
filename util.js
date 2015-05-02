@@ -9,6 +9,7 @@ Util = {};
 var app;
 Util.context = {
 	language: "en",
+	server: constant.khanServer,
 	favorites: {},
 	readtimes: {}
 };
@@ -39,6 +40,7 @@ Util.setLanguage = function(lang) {
 Util.getLanguage = function() {
 	return Util.context.language;
 }
+
 Util.getCollection = function() {
 	if (Util.context.language == "en")
 		return database_en;
@@ -47,6 +49,7 @@ Util.getCollection = function() {
 	else
 		return database_fr;
 }
+
 Util.setFavorite = function(id, value) {
 	if (value)
 		Util.context.favorites[id] = value;
@@ -65,4 +68,14 @@ Util.setReadTime = function(id, time) {
 }
 Util.getReadTime = function(id) {
 	return Util.context.readtimes[id];
+}
+
+Util.setServer = function(server) {
+	Util.context.server = server;
+}
+Util.getServer = function() {
+	return Util.context.server;
+}
+Util.isKhanServer = function() {
+	return Util.context.server == constant.khanServer;
 }
