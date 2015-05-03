@@ -15,10 +15,10 @@ enyo.kind({
 	components: [
 		{ name: "spinner", kind: "Image", src: "images/spinner-dark.gif", classes: "spinner" },
 		{ name: "background", classes: "itemImage", kind: "Image", src: "images/notloaded.png" },
-		{ name: "itemImage", classes: "itemImage", kind: "Image", showing: false, onload: "imageLoaded", onerror: "defaultImage" },
+		{ name: "itemImage", classes: "itemImage", kind: "Image", showing: false, onload: "imageLoaded", onerror: "defaultImage", ontap: "showVideo" },
 		{ name: "itemPlay", classes: "itemPlay", kind: "Image", showing: false, src: "images/play.svg", ontap: "showVideo" },
-		{ name: "itemFavorite", classes: "itemFavorite", kind: "Image", src: "images/favorite.svg", showing: false },
-		{ name: "itemRemote", classes: "itemRemote", kind: "Image", src: "images/remote.svg", showing: false },
+		{ name: "itemFavorite", classes: "itemFavorite", kind: "Image", src: "images/favorite.svg", showing: false, ontap: "showVideo" },
+		{ name: "itemRemote", classes: "itemRemote", kind: "Image", src: "images/remote.svg", showing: false, ontap: "showVideo" },
 		{ name: "itemOverlay", classes: "itemOverlay" },
 		{ name: "itemTitle", classes: "itemTitle", content: "" }
 	],
