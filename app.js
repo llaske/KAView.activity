@@ -64,7 +64,7 @@ enyo.kind({
 		
 		// Display button
 		this.$.previousbutton.setShowing(this.index-constant.pageCount >= 0);
-		this.$.pagecount.setContent(1+Math.ceil(this.index/constant.pageCount)+"/"+Math.ceil(len/constant.pageCount));
+		this.$.pagecount.setContent((len?1:0)+Math.ceil(this.index/constant.pageCount)+"/"+Math.ceil(len/constant.pageCount));
 		this.$.nextbutton.setShowing(this.index+constant.pageCount <= len);
 	},
 	
@@ -97,5 +97,11 @@ enyo.kind({
 	
 	remoteChanged: function() {
 		this.draw();
+	},
+	
+	favoriteChanged: function(favorite) {
+		this.collection = Util.getCollection(favorite);
+		this.index = 0;
+		this.draw();	
 	}
 });

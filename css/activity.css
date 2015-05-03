@@ -6,6 +6,10 @@
   background-image: url(../icons/settings.svg);
 }
 
+#main-toolbar #favorite-button {
+  background-image: url(../images/notfavorite.svg);
+}
+
 .palette-button {
 	width: 110px;
 	height: 47px;

@@ -1,13 +1,14 @@
 define(function (require) {
     var activity = require("sugar-web/activity/activity");
 	var settingspalette = require("settingspalette");
+	var isFavorite = false;
 
     // Manipulate the DOM only when it is ready.
     require(['domReady!'], function (doc) {
         // Initialize the activity.
         activity.setup();
 
-		// Create settings palette
+		// Create palette
         var settingsButton = document.getElementById("settings-button");
 		settingspalette = new settingspalette.SettingsPalette(settingsButton, undefined);
 		settingspalette.addEventListener('language', function() {
@@ -19,6 +20,15 @@ define(function (require) {
 			settingspalette.popDown();
 			app.remotePopUp();
 		});
+		document.getElementById("favorite-button").onclick = function(s, e) {
+			var invoker = s.toElement;
+			isFavorite = !isFavorite;
+			if (isFavorite)
+				invoker.style.backgroundImage = 'url(images/favorite.svg)';
+			else
+				invoker.style.backgroundImage = 'url(images/notfavorite.svg)';
+			app.favoriteChanged(isFavorite);
+		};
 		
 		// Launch main screen
 		app = new KAView.App({activity: activity});

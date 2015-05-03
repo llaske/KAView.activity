@@ -41,13 +41,21 @@ Util.getLanguage = function() {
 	return Util.context.language;
 }
 
-Util.getCollection = function() {
+Util.getCollection = function(favorite) {
+	var database;
 	if (Util.context.language == "en")
-		return database_en;
+		database = database_en;
 	else if (Util.context.language == "es")
-		return database_es;
+		database = database_es;
 	else
-		return database_fr;
+		database = database_fr;
+	if (!favorite)
+		return database;
+	var filter = [];
+	for (var i = 0 ; i < database.length ; i++)
+		if (Util.getFavorite(database[i].id))
+			filter.push(database[i]);
+	return filter;
 }
 
 Util.setFavorite = function(id, value) {
