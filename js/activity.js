@@ -1,5 +1,6 @@
 define(function (require) {
     var activity = require("sugar-web/activity/activity");
+	var env = require("sugar-web/env");
 	var settingspalette = require("settingspalette");
 	var isFavorite = false;
 
@@ -7,6 +8,8 @@ define(function (require) {
     require(['domReady!'], function (doc) {
         // Initialize the activity.
         activity.setup();
+		if (!env.isSugarizer())
+			constant.videoType = "ogv";
 
 		// Create palette
         var settingsButton = document.getElementById("settings-button");

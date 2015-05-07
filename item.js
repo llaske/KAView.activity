@@ -71,11 +71,11 @@ enyo.kind({
 	
 	videoURL: function() {
 		if (this.isLocal)
-			return "videos/database/"+this.code+".mp4";
+			return "videos/database/"+this.code+"."+constant.videoType;
 		else if (Util.isKhanServer())
 			return constant.khanServer+this.code+".mp4/"+this.code+".mp4";
 		else
-			return Util.getServer()+"/videos/"+this.code+".mp4";
+			return Util.getServer()+"/videos/"+this.code+"."+constant.videoType;
 	
 	},
 	

@@ -303,3 +303,9 @@
 		font-size: 14pt;
 	}
 }
+
+@media screen and (device-width: 1200px) and (device-height: 900px) {
+	.viewer-footer {
+		height: 75px;
+	}
+}
