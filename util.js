@@ -10,7 +10,7 @@ var app;
 Util.context = {
 	language: "en",
 	server: constant.khanServer,
-	favorites: {},
+	favorites: {"AuX7nPBqDts": true, "7CKiA8d_x2U": true, "yHeTx8SAaOQ": true},
 	readtimes: {}
 };
 Util.saveContext = function() {
