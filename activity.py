@@ -64,6 +64,11 @@ class EnyoActivity(activity.Activity):
             self.favorite_button.icon_name = self.favorite_status = 'favorite'
             self.enyo.send_message("favorite_clicked", 1)
 
+    def refresh(self, context):
+        self.context = context
+        web_app_page = os.path.join(activity.get_bundle_path(), "index.html")
+        self.webview.load_uri('file://' + web_app_page+"?onsugar=1")
+
     def settings(self, button):
         self.enyo.send_message("settings_clicked")
 
@@ -98,6 +103,7 @@ class EnyoActivity(activity.Activity):
         self.enyo = Enyo(webview)
         self.enyo.connect("ready", self.init_context)
         self.enyo.connect("save-context", self.save_context)
+        self.enyo.connect("refresh-screen", self.refresh)
 
         # Go to first page
         web_app_page = os.path.join(activity.get_bundle_path(), "index.html")
@@ -171,8 +177,6 @@ class EnyoActivity(activity.Activity):
 
     def save_context(self, context):
         """Called by Enyo to save the current context"""
-        logging.warning("python.save_context");
-        logging.warning(context);
         file = open(self.file_path, 'w')
         try:
             file.write(self.enyo.json_encode(context)+'\n')
@@ -182,7 +186,6 @@ class EnyoActivity(activity.Activity):
     def read_file(self, file_path):
         """Called when activity is loaded, load the current context in the file"""
         file = open(file_path, 'r')
-        logging.warning("python.load_context");
         self.context = {}
         try:
             self.context = self.enyo.json_decode(file.readline().strip('\n'))

@@ -49,8 +49,13 @@ enyo.kind({
 	closeDialog: function() {
 		this.$.video.pause();
 		Util.setReadTime(this.item.code, this.$.video.getCurrentTime());
+		this.$.video.unload();
 		Util.saveContext();
 		this.hide();
+		if (Util.onSugar()) {
+			// HACK: Force refresh screen on Sugar to avoid video issue
+			Util.sugar.sendMessage("refresh-screen", Util.context);
+		}
 	},
 	
 	setFavorite: function() {
