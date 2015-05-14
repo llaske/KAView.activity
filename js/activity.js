@@ -8,8 +8,6 @@ define(function (require) {
     require(['domReady!'], function (doc) {
         // Initialize the activity.
         activity.setup();
-		if (!env.isSugarizer())
-			constant.videoType = "ogv";
 
 		// Create palette
         var settingsButton = document.getElementById("settings-button");
@@ -27,9 +25,9 @@ define(function (require) {
 			var invoker = s.toElement;
 			isFavorite = !isFavorite;
 			if (isFavorite)
-				invoker.style.backgroundImage = 'url(images/favorite.svg)';
+				invoker.style.backgroundImage = 'url(icons/favorite.svg)';
 			else
-				invoker.style.backgroundImage = 'url(images/notfavorite.svg)';
+				invoker.style.backgroundImage = 'url(icons/notfavorite.svg)';
 			app.favoriteChanged(isFavorite);
 		};
 		

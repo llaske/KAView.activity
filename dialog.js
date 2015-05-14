@@ -26,7 +26,7 @@ enyo.kind({
 	
 	rendered: function() {
 		if (this.item != null) {
-			this.$.favoritebutton.applyStyle("background-image", "url(images/"+(!this.item.isFavorite?"not":"")+"favorite.svg)");	
+			this.$.favoritebutton.applyStyle("background-image", "url(icons/"+(!this.item.isFavorite?"not":"")+"favorite.svg)");	
 			if (!this.init) {
 				this.init = true;
 				var time = Util.getReadTime(this.item.code);

@@ -14,22 +14,27 @@ Util.context = {
 	readtimes: {}
 };
 Util.saveContext = function() {
+	if (Util.onSugar()) return;
 	var datastoreObject = app.activity.getDatastoreObject();	
 	var jsonData = JSON.stringify(Util.context);
 	datastoreObject.setDataAsText(jsonData);
 console.log("SAVE CONTEXT <"+jsonData+">");
 	datastoreObject.save(function() {});	
 };
-Util.loadContext = function(callback) {
-	var datastoreObject = app.activity.getDatastoreObject();
-	datastoreObject.loadAsText(function (error, metadata, data) {
-console.log("LOAD CONTEXT <"+data+">");	
-		var context = JSON.parse(data);
-		if (context) {
-			Util.context = context;
-		}
-		callback();
-	});
+Util.loadContext = function(callback, loaded) {
+	if (!Util.onSugar()) {
+		var datastoreObject = app.activity.getDatastoreObject();
+		datastoreObject.loadAsText(function (error, metadata, data) {
+	console.log("LOAD CONTEXT <"+data+">");	
+			var context = JSON.parse(data);
+			if (context) {
+				Util.context = context;
+			}
+			callback();
+		});
+	} else {
+		Util.context = loaded;
+	}
 };
 
 // Context update
@@ -86,4 +91,13 @@ Util.getServer = function() {
 }
 Util.isKhanServer = function() {
 	return Util.context.server == constant.khanServer;
+}
+
+// Misc
+Util.onSugar = function() {
+	var getUrlParameter = function(name) {
+		var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+		return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    };
+	return getUrlParameter("onsugar");
 }

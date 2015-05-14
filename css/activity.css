@@ -7,7 +7,7 @@
 }
 
 #main-toolbar #favorite-button {
-  background-image: url(../images/notfavorite.svg);
+  background-image: url(../icons/notfavorite.svg);
 }
 
 .palette-button {
@@ -45,7 +45,7 @@
 }
 
 #remote-button {
-	background-image:url(../images/remote.svg);
+	background-image:url(../icons/remote.svg);
 }
 
 .main-content {
@@ -202,7 +202,7 @@
 .module-icon {
 	position: absolute;
 	left: 10px;
-	background-image: url(../images/remote.svg);
+	background-image: url(../icons/remote.svg);
 	width: 49px;
 	height: 49px;
 }

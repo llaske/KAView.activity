@@ -24,18 +24,22 @@ enyo.kind({
 		this.inherited(arguments);
 		this.computeSize();
 		this.localeChanged();
+		this.favorite = false;
 	},
 	
 	computeSize: function() {
 		var toolbar = document.getElementById("main-toolbar");
+		var toolbaroffset = !Util.onSugar() ? toolbar.offsetHeight : 37.5;
 		var canvas = document.getElementById("body");
 		var canvas_height = canvas.offsetHeight;
-		this.$.content.applyStyle("height", (canvas_height-(toolbar.offsetHeight*2))+"px");
+		this.$.content.applyStyle("height", (canvas_height-(toolbaroffset*2))+"px");
 	},
 	
 	resize: function() {
-		this.computeSize();
-		this.draw();
+		if (!Util.onSugar()) {
+			this.computeSize();
+			this.draw();
+		}
 	},
 	
 	// Draw screen
@@ -85,7 +89,7 @@ enyo.kind({
 	},
 	
 	localeChanged: function() {
-		this.collection = Util.getCollection();
+		this.collection = Util.getCollection(this.favorite);
 		this.index = 0;
 		this.draw();	
 	},
@@ -100,7 +104,8 @@ enyo.kind({
 	},
 	
 	favoriteChanged: function(favorite) {
-		this.collection = Util.getCollection(favorite);
+		this.favorite = favorite;
+		this.collection = Util.getCollection(this.favorite);
 		this.index = 0;
 		this.draw();	
 	}

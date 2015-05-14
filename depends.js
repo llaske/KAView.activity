@@ -4,5 +4,6 @@
 	"item.js",
 	"dialog.js",
 	"database.js",
-	"util.js"
+	"util.js",
+	"sugar.js"
 );
