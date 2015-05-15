@@ -84,8 +84,8 @@ enyo.kind({
 	},
 	
 	showVideo: function(item) {
-		this.$.videoDialog.setItem(item);
 		this.$.videoDialog.show();
+		this.$.videoDialog.setItem(item);
 	},
 	
 	localeChanged: function() {
