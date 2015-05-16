@@ -75,11 +75,13 @@ enyo.kind({
 	// Page event
 	showPrevious: function() {
 		this.index -= constant.pageCount;
+		this.saveContext();
 		this.draw();
 	},
 	
 	showNext: function() {
 		this.index += constant.pageCount;
+		this.saveContext();
 		this.draw();	
 	},
 	
@@ -88,9 +90,10 @@ enyo.kind({
 		this.$.videoDialog.setItem(item);
 	},
 	
-	localeChanged: function() {
+	localeChanged: function(index) {
 		this.collection = Util.getCollection(this.favorite);
-		this.index = 0;
+		this.index = (index !== undefined ? index : 0);
+		this.saveContext();
 		this.draw();	
 	},
 	
@@ -107,6 +110,12 @@ enyo.kind({
 		this.favorite = favorite;
 		this.collection = Util.getCollection(this.favorite);
 		this.index = 0;
+		this.saveContext();
 		this.draw();	
+	},
+	
+	saveContext: function() {
+		Util.setIndex(this.index);
+		Util.saveContext();
 	}
 });

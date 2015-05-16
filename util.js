@@ -11,21 +11,22 @@ Util.context = {
 	language: "en",
 	server: constant.khanServer,
 	favorites: {"AuX7nPBqDts": true, "7CKiA8d_x2U": true, "yHeTx8SAaOQ": true},
-	readtimes: {}
+	readtimes: {},
+	currentindex: 0
 };
 Util.saveContext = function() {
-	if (Util.onSugar()) return;
+	if (Util.onSugar() || !app || !app.activity) return;
 	var datastoreObject = app.activity.getDatastoreObject();	
 	var jsonData = JSON.stringify(Util.context);
 	datastoreObject.setDataAsText(jsonData);
-console.log("SAVE CONTEXT <"+jsonData+">");
+	//console.log("SAVE CONTEXT <"+jsonData+">");
 	datastoreObject.save(function() {});	
 };
 Util.loadContext = function(callback, loaded) {
 	if (!Util.onSugar()) {
 		var datastoreObject = app.activity.getDatastoreObject();
 		datastoreObject.loadAsText(function (error, metadata, data) {
-	console.log("LOAD CONTEXT <"+data+">");	
+			//console.log("LOAD CONTEXT <"+data+">");	
 			var context = JSON.parse(data);
 			if (context) {
 				Util.context = context;
@@ -91,6 +92,13 @@ Util.getServer = function() {
 }
 Util.isKhanServer = function() {
 	return Util.context.server == constant.khanServer;
+}
+
+Util.setIndex = function(index) {
+	Util.context.currentindex = index;
+}
+Util.getIndex = function() {
+	return Util.context.currentindex;
 }
 
 // Misc

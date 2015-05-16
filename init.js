@@ -19,12 +19,12 @@ if (Util.onSugar()) {
 	
 	// Handle context event from Python
 	Util.sugar.connect('load-context', function(context) {
-console.log("#JS LOAD CONTEXT "+JSON.stringify(context));
+		//console.log("#JS LOAD CONTEXT "+JSON.stringify(context));
 		Util.loadContext(null, context);
-		app.localeChanged();
+		app.localeChanged(Util.getIndex());
 	});
 	Util.sugar.connect('save-context', function() {
-console.log("#JS SAVE CONTEXT "+JSON.stringify(Util.context));
+		//console.log("#JS SAVE CONTEXT "+JSON.stringify(Util.context));
 		Util.sugar.sendMessage("save-context", Util.context);
 	});
 	

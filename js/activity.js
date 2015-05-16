@@ -37,7 +37,7 @@ define(function (require) {
 		
 		// Load context
 		Util.loadContext(function() {
-			settingspalette.setLanguage(Util.getLanguage());
+			app.localeChanged(Util.getIndex());
 			app.draw();
 		});
     });
