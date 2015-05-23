@@ -62,6 +62,14 @@ enyo.kind({
 	},
 	
 	defaultImage: function() {
+		if (this.isLocal) {
+			 // HACK: Local not load mean that video not present locally
+			this.isLocal = false;
+			this.nameChanged();
+			this.isLocalChanged();
+			this.render();
+			return;
+		}
 		this.$.itemImage.setAttribute("src", "images/notloaded.png");
 		this.$.itemImage.setShowing(true);
 		this.$.itemPlay.setShowing(true);

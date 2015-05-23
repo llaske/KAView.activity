@@ -50,6 +50,7 @@ enyo.kind({
 		this.$.video.pause();
 		Util.setReadTime(this.item.code, this.$.video.getCurrentTime());
 		this.$.video.unload();
+		this.item = null;
 		Util.saveContext();
 		this.hide();
 		if (Util.onSugar()) {
